@@ -1,26 +1,22 @@
-C0.data <- Read10X(data.dir ="C0")
+
 C1.data <- Read10X(data.dir ="C1")
 C2.data <- Read10X(data.dir ="C2")
 C3.data <- Read10X(data.dir ="C3")
+C4.data <- Read10X(data.dir ="C4")
 
-M0.data <- Read10X(data.dir ="M0")
+
 M1.data <- Read10X(data.dir ="M1")
 M2.data <- Read10X(data.dir ="M2")
 M3.data <- Read10X(data.dir ="M3")
+M4.data <- Read10X(data.dir ="M4")
 
-P0.data <- Read10X(data.dir ="P0")
+
 P1.data <- Read10X(data.dir ="P1")
 P2.data <- Read10X(data.dir ="P2")
 P3.data <- Read10X(data.dir ="P3")
+P4.data <- Read10X(data.dir ="P4")
 
 
-C0 <- CreateSeuratObject(counts = C0.data, project = "Core0", min.cells = 3)
-C0$num <- "0"
-C0$BTN <- "Core"
-C0[["percent.mt"]] <- PercentageFeatureSet(C0, pattern = "^MT-")
-FeatureScatter(C0,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
-VlnPlot(C0, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
-C0 <- subset(C0, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
 
 C1 <- CreateSeuratObject(counts = C1.data, project = "Core1", min.cells = 3)
 C1$num <- "1"
@@ -46,13 +42,15 @@ FeatureScatter(C3,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smoo
 VlnPlot(C3, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 C3 <- subset(C3, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
 
-M0 <- CreateSeuratObject(counts = M0.data, project = "Middle0", min.cells = 3)
-M0$num <- "0"
-M0$BTN <- "Middle"
-M0[["percent.mt"]] <- PercentageFeatureSet(M0, pattern = "^MT-")
-FeatureScatter(M0,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
-VlnPlot(M0, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
-M0 <- subset(M0, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
+C4 <- CreateSeuratObject(counts = C4.data, project = "Core4", min.cells = 3)
+C4$num <- "4"
+C4$BTN <- "Core"
+C4[["percent.mt"]] <- PercentageFeatureSet(C4, pattern = "^MT-")
+FeatureScatter(C4,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
+VlnPlot(C4, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+C4 <- subset(C4, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
+
+
 
 M1 <- CreateSeuratObject(counts = M1.data, project = "Middle1", min.cells = 3)
 M1$num <- "1"
@@ -78,13 +76,13 @@ FeatureScatter(M3,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smoo
 VlnPlot(M3, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 M3 <- subset(M3, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
 
-P0 <- CreateSeuratObject(counts = P0.data, project = "Periphery0", min.cells = 3)
-P0$num <- "0"
-P0$BTN <- "Periphery"
-P0[["percent.mt"]] <- PercentageFeatureSet(P0, pattern = "^MT-")
-FeatureScatter(P0,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
-VlnPlot(P0, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
-P0 <- subset(P0, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
+M4 <- CreateSeuratObject(counts = M4.data, project = "Middle4", min.cells = 3)
+M4$num <- "4"
+M4$BTN <- "Middle"
+M4[["percent.mt"]] <- PercentageFeatureSet(M4, pattern = "^MT-")
+FeatureScatter(M4,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
+VlnPlot(M4, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+M4 <- subset(M4, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
 
 P1 <- CreateSeuratObject(counts = P1.data, project = "Periphery1", min.cells = 3)
 P1$num <- "1"
@@ -110,9 +108,17 @@ FeatureScatter(P3,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smoo
 VlnPlot(P3, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
 P3 <- subset(P3,subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
 
+P4 <- CreateSeuratObject(counts = P4.data, project = "Periphery4", min.cells = 3)
+P4$num <- "4"
+P4$BTN <- "Periphery"
+P4[["percent.mt"]] <- PercentageFeatureSet(P4, pattern = "^MT-")
+FeatureScatter(P4,feature1 = "nCount_RNA",feature2 ="nFeature_RNA" ) + geom_smooth(method = "lm")
+VlnPlot(P4, features = c("nFeature_RNA", "nCount_RNA", "percent.mt"), ncol = 3)
+P4 <- subset(P4, subset = nFeature_RNA > 200 & nFeature_RNA < 2500 & percent.mt < 25)
+
 ###############INTERGTARE LARGE DATASET AS SEURAT##########
 
-datasets <- list(C0,C1,C2,C3,M0,M1,M2,M3,P0,P1,P2,P3)
+datasets <- list(C1,C2,C3,C4,M1,M2,M3,M4,P1,P2,P3,P4)
 saveRDS(datasets, file = "HU4.rds")
 
 
